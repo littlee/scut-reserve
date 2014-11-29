@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var dbConfig = require('./db');
 var mongoose = require('mongoose');
-// 连接到数据库
-mongoose.connect(dbConfig.url);
+
+var db_name = 'reserve';
+var mongodb_connection_string = require('./db').url;
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+	mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+}
+mongoose.connect(mongodb_connection_string);
 
 var app = express();
 
