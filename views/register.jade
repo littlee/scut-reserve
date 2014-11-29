@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-4
+			.col-sm-4.col-xs-12
+				img(src="/images/bulb.png", alt="bulb" class='center-block')
+				h1.text-center 结构实验室--注册
+				#message
+					if message
+						p.text-danger #{message}
+				form(action='/signup', method='POST')
+					.form-group
+						input(type='text', name='username' placeholder='学号').form-control
+					.form-group
+						input(type='text', name='realname' placeholder='姓名').form-control
+					.form-group
+						input(type='password', name='password' placeholder='密码').form-control
+					button(type='submit').btn.btn-primary.btn-block 注册
+					a(href='/').btn.btn-default.btn-block 登录
+			.col-sm-4

@@ -1,0 +1,72 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-3.col-xs-1
+			.col-sm-6.col-xs-10
+				img(src='/images/bulb.png', alt='bulb' class='center-block')
+				h1.text-center 结构实验室--预约
+				h2.text-center 欢迎，#{user.realname}
+				form(action='/home' method='POST')
+					.row
+						.col-sm-4.trim-col
+							.thumbnail
+								h3.text-center 早上
+								span.info #{countReserve.morning} / 9
+								img(src='/images/morning.png')
+								.caption
+									if user.reMorning
+										p.text-center 已预约
+										button(type='submit' name='reserve' value='cm').btn.btn-warning.btn-block 取消
+									else if countReserve.morning === 9
+										p.text-center.text-danger 预约已满
+									else
+										p.text-center 未预约
+										button(type='submit' name='reserve' value='rm').btn.btn-primary.btn-block
+											span.glyphicon.glyphicon-ok
+											|预约
+
+						.col-sm-4.trim-col
+							.thumbnail
+								h3.text-center 下午 
+								span.info #{countReserve.afternoon} / 9
+								img(src='/images/noon.png')
+								.caption
+									if user.reAfternoon
+										p.text-center 已预约
+										button(type='submit' name='reserve' value='ca').btn.btn-warning.btn-block 取消
+									else if countReserve.afternoon === 9
+										p.text-center.text-danger 预约已满
+									else
+										p.text-center 未预约
+										button(type='submit' name='reserve' value='ra').btn.btn-primary.btn-block
+											span.glyphicon.glyphicon-ok
+											|预约
+						.col-sm-4.trim-col
+							.thumbnail
+								h3.text-center 晚上 
+								span.info #{countReserve.night} / 9
+								img(src='/images/night.png')
+								.caption
+									if user.reNight
+										p.text-center 已预约
+										button(type='submit' name='reserve' value='cn').btn.btn-warning.btn-block 取消
+									else if countReserve.night === 9
+										p.text-center.text-danger 预约已满
+									else
+										p.text-center 未预约
+										button(type='submit' name='reserve' value='rn').btn.btn-primary.btn-block
+											span.glyphicon.glyphicon-ok
+											|预约
+			.col-sm-3.col-xs-1
+		.row
+			.col-md-4
+			.col-md-4
+				a(href='/check').btn.btn-info.btn-block
+					span.glyphicon.glyphicon-align-justify
+					|查看预约情况
+				a(href='/signout').btn.btn-danger.btn-block#logout
+					span.glyphicon.glyphicon-log-out
+					|退出登录
+			.col-md-4

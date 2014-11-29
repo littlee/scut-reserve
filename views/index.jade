@@ -1,0 +1,28 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-4
+			.col-sm-4.col-xs-12
+				img(src="/images/bulb.png", alt="bulb" class='center-block')
+				h1.text-center 结构实验室--登录
+				#message
+					if message
+						p.text-danger #{message}
+				form(action='/login', method='POST')
+					.form-group
+						input(type='text', name='username' placeholder='学号' required).form-control
+					.form-group
+						input(type='password', name='password' placeholder='密码' required).form-control
+					button(type='submit').btn.btn-success.btn-block
+						span.glyphicon.glyphicon-log-in
+						|登录
+					a(href='/signup').btn.btn-default.btn-block
+						span.glyphicon.glyphicon-edit
+						|注册
+				#check
+					a(href='/check').btn.btn-info.btn-block
+						span.glyphicon.glyphicon-align-justify
+						|查看预约情况
+			.col-sm-4

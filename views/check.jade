@@ -1,0 +1,47 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-md-4
+			.col-md-4
+				img(src='/images/bulb.png', alt='bulb' class='center-block')
+				h1.text-center 预约情况
+				h2#date.text-center _
+				a(href='javascript:history.back()').btn.btn-primary.btn-block
+					span.glyphicon.glyphicon-chevron-left 
+					span 返回
+				h2.text-center 上午
+				table.table.table-striped.table-bordered.check-table
+					thead
+						tr
+							th 学号
+							th 姓名
+					tbody
+						each person in reservation.morning
+							tr
+								td= person.username
+								td= person.realname
+				h2.text-center 下午
+				table.table.table-striped.table-bordered.check-table
+					thead
+						tr
+							th 学号
+							th 姓名
+					tbody
+						each person in reservation.afternoon
+							tr
+								td= person.username
+								td= person.realname
+				h2.text-center 晚上
+				table.table.table-striped.table-bordered.check-table
+					thead
+						tr
+							th 学号
+							th 姓名
+					tbody
+						each person in reservation.night
+							tr
+								td= person.username
+								td= person.realname
+			.col-md-4
