@@ -80,6 +80,7 @@ app.use(function(err, req, res, next) {
 
 // 在特定时间清除所有预订
 var User = require('./models/user');
+var time = require('time');
 var CronJob = require('cron').CronJob;
 var clearReserve = function () {
 	User.update({ reMorning : true }, { reMorning : false }, {multi: true}, function (err, numberAffected, raw) {
@@ -109,7 +110,7 @@ var job = new CronJob({
 	cronTime: '00 59 23 * * *',
 	onTick: clearReserve,
 	start: true,
-	timezone: 'Asia/Shanghai'
+	timeZone: 'Asia/Shanghai'
 });
 
 module.exports = app;
